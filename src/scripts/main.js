@@ -4,8 +4,8 @@ const list = Array.from(document.querySelectorAll('li'));
 
 const parseToNumber = (string) => +string.replace(/[^0-9.-]+/g, '');
 
-const sortList = function (elements) {
-  const sortedList = list.sort(
+const sortList = (elements) => {
+  const sortedList = [...elements].sort(
     (a, b) => parseToNumber(b.dataset.salary) - parseToNumber(a.dataset.salary),
   );
 
@@ -13,19 +13,18 @@ const sortList = function (elements) {
 
   sortedList.forEach((el) => ul.appendChild(el));
 };
+
 const getEmployees = (elements) => {
-  const rightObjects = [];
+  return elements.map((el) => {
+    const { position, salary, age } = el.dataset;
 
-  list.map((el) => {
-    rightObjects.push({
+    return {
       name: el.textContent.trim(),
-      position: el.dataset.position,
-      salary: el.dataset.salary,
-      age: el.dataset.age,
-    });
+      position,
+      salary,
+      age,
+    };
   });
-
-  return rightObjects;
 };
 
 sortList(list);
