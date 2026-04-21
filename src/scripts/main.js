@@ -22,7 +22,7 @@ const getEmployees = (elements) => {
       name: el.textContent.trim(),
       position,
       salary: parseToNumber(salary),
-      age,
+      age: parseToNumber(age),
     };
   });
 };
